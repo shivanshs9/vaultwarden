@@ -7,9 +7,12 @@ keywords:
 sources:
   - https://github.com/guerzon/vaultwarden
   - https://github.com/dani-garcia/vaultwarden
-appVersion: 1.28.1
+appVersion: 1.29.0
 maintainers:
   - name: Lester Guerzon
     email: guerzon@proton.me
     url: https://github.com/guerzon
-version: 0.14.0
+  - name: Shivansh Saini
+    email: contact@shivanshs9.me
+    url: https://shivanshs9.me
+version: 0.15.0

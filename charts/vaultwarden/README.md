@@ -11,9 +11,6 @@
 | `image.pullPolicy`  | Vaultwarden image pull policy                 | `IfNotPresent`       |
 | `image.pullSecrets` | Specify docker-registry secret names          | `[]`                 |
 | `domain`            | Domain name where the application is accessed | `""`                 |
-| `websocket.enabled` | Enable websocket notifications                | `true`               |
-| `websocket.address` | Websocket listen address                      | `0.0.0.0`            |
-| `websocket.port`    | Websocket listen port                         | `3012`               |
 | `rocket.port`       | Rocket port                                   | `8080`               |
 | `rocket.workers`    | Rocket number of workers                      | `10`                 |
 | `webVaultEnabled`   | Enable Web Vault                              | `true`               |
@@ -32,14 +29,22 @@
 | `adminToken.existingSecret`    | Specify an existing Kubernetes secret containing the admin token. Also set adminToken.existingSecretKey. | `""`                |
 | `adminToken.existingSecretKey` | When using adminToken.existingSecret, specify the key containing the token.                              | `""`                |
 | `adminToken.value`             | Plain string containing the admin token.                                                                 | `R@ndomToken$tring` |
-| `signupsAllowed`               | By default, anyone who can access your instance can register for a new account.                          | `true`              |
-| `invitationsAllowed`           | Even when registration is disabled, organization administrators or owners can                            | `true`              |
-| `signupDomains`                | List of domain names for users allowed to register                                                       | `contoso.com`       |
-| `signupsVerify`                | Whether to require account verification for newly-registered users.                                      | `true`              |
-| `showPassHint`                 | Whether a password hint should be shown in the page.                                                     | `false`             |
-| `fullnameOverride`             | String to override the application name.                                                                 | `""`                |
-| `serviceAccount.create`        | Create a service account                                                                                 | `true`              |
-| `serviceAccount.name`          | Name of the service account to create                                                                    | `vaultwarden-svc`   |
+
+### Bitwarden self-host settings
+
+| Name                                          | Description                                                                       | Value              |
+| --------------------------------------------- | --------------------------------------------------------------------------------- | ------------------ |
+| `bitwarden.existingSecret`                    | Specify an existing Kubernetes secret containing the bitwarden installation keys. | `sec-vault`        |
+| `bitwarden.installationId.existingSecretKey`  | Specify the key containing the installation ID provided by Bitwarden              | `installation_id`  |
+| `bitwarden.installationKey.existingSecretKey` | Specify the key containing the installation key provided by Bitwarden             | `installation_key` |
+| `signupsAllowed`                              | By default, anyone who can access your instance can register for a new account.   | `true`             |
+| `invitationsAllowed`                          | Even when registration is disabled, organization administrators or owners can     | `true`             |
+| `signupDomains`                               | List of domain names for users allowed to register                                | `contoso.com`      |
+| `signupsVerify`                               | Whether to require account verification for newly-registered users.               | `true`             |
+| `showPassHint`                                | Whether a password hint should be shown in the page.                              | `false`            |
+| `fullnameOverride`                            | String to override the application name.                                          | `""`               |
+| `serviceAccount.create`                       | Create a service account                                                          | `true`             |
+| `serviceAccount.name`                         | Name of the service account to create                                             | `vaultwarden-svc`  |
 
 ### Exposure Parameters
 

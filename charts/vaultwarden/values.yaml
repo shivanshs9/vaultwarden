@@ -28,14 +28,7 @@ image:
 ## Example: https://warden.contoso.com:8443
 ##
 domain: ""
-## @param websocket.enabled Enable websocket notifications
-## @param websocket.address Websocket listen address
-## @param websocket.port Websocket listen port
-##
-websocket:
-  enabled: true
-  address: "0.0.0.0"
-  port: 3012
+
 ## @param rocket.port Rocket port
 ## @param rocket.workers Rocket number of workers
 ##
@@ -70,6 +63,26 @@ adminToken:
   ## Example: ADMIN_TOKEN
   ##
   value: "R@ndomToken$tring"
+
+## @section Bitwarden self-host settings
+## Get the values from https://bitwarden.com/host/
+## Related PR: https://github.com/dani-garcia/vaultwarden/pull/3304
+##
+bitwarden:
+  ## @param bitwarden.existingSecret Specify an existing Kubernetes secret containing the bitwarden installation keys.
+  ## Example: admincreds_secret
+  ## Default: release full name
+  ##
+  existingSecret: sec-vault
+  ## Installation ID for Bitwarden instance
+  installationId:
+    ## @param bitwarden.installationId.existingSecretKey Specify the key containing the installation ID provided by Bitwarden
+    existingSecretKey: installation_id
+  ## Installation Key for Bitwarden instance
+  installationKey:
+    ## @param bitwarden.installationKey.existingSecretKey Specify the key containing the installation key provided by Bitwarden
+    existingSecretKey: installation_key
+
 ## @param signupsAllowed By default, anyone who can access your instance can register for a new account.
 ## To disable this, set this parameter to false. Even when signupsAllowed=false, an existing user who is
 ## an organization owner or admin can still invite new users. If you want to disable this as well, set

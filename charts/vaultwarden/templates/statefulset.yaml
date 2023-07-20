@@ -55,6 +55,18 @@ spec:
             - configMapRef:
                 name: {{ include "vaultwarden.fullname" . }}
           env:
+            {{- if .Values.bitwarden.existingSecret }}
+            - name: PUSH_INSTALLATION_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ default (include "vaultwarden.fullname" .) .Values.bitwarden.existingSecret }}
+                  key: {{ default "PUSH_INSTALLATION_ID" .Values.bitwarden.installationId.existingSecretKey }}
+            - name: PUSH_INSTALLATION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ default (include "vaultwarden.fullname" .) .Values.bitwarden.existingSecret }}
+                  key: {{ default "PUSH_INSTALLATION_KEY" .Values.bitwarden.installationKey.existingSecretKey }}
+            {{- end }}
             {{- if or (.Values.smtp.username.value) (.Values.smtp.username.existingSecretKey )}}
             - name: SMTP_USERNAME
               valueFrom:
@@ -92,9 +104,6 @@ spec:
           ports:
             - containerPort: 8080
               name: http
-              protocol: TCP
-            - containerPort: {{ .Values.websocket.port }}
-              name: websocket
               protocol: TCP
           {{- if .Values.storage.enabled }}
           volumeMounts:
